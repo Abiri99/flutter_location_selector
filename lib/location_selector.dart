@@ -1,8 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_country_selector/world_map_painter.dart';
 
-class LocationSelector extends StatelessWidget {
+class LocationSelector extends StatefulWidget {
   const LocationSelector({Key key}) : super(key: key);
+
+  @override
+  _LocationSelectorState createState() => _LocationSelectorState();
+}
+
+class _LocationSelectorState extends State<LocationSelector>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation<double> _translationAnimation;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+      reverseDuration: Duration(seconds: 2),
+    );
+    _translationAnimation = Tween(begin: 0.0, end: 50.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+        reverseCurve: Curves.easeInOut,
+      ),
+    );
+    // Future.delayed(Duration(seconds: 1), () {
+    //   _animationController.forward();
+    // });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +53,13 @@ class LocationSelector extends StatelessWidget {
               aspectRatio: 800 / 520,
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(1000)),
-                child: CustomPaint(
-                  painter: WorldMapPainter(
-                    developMode: false,
+                child: AnimatedBuilder(
+                  animation: _animationController,
+                  builder: (context, _) => CustomPaint(
+                    painter: WorldMapPainter(
+                      developMode: false,
+                      translationX: _translationAnimation.value,
+                    ),
                   ),
                 ),
               ),

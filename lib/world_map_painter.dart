@@ -4,7 +4,12 @@ import 'dart:ui' as ui;
 class WorldMapPainter extends CustomPainter {
   final bool developMode;
 
-  WorldMapPainter({this.developMode = false});
+  final double translationX;
+
+  WorldMapPainter({
+    this.developMode = false,
+    this.translationX,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -21,11 +26,12 @@ class WorldMapPainter extends CustomPainter {
     if (!developMode) _drawBackgroundColor(canvas, size);
 
     // canvas.drawColor(Colors.blue, BlendMode.src);
-    canvas.translate(0, 0);
+    canvas.translate(translationX ?? 0, 0);
 
     if (!developMode) _drawAmericaContinentShadow(canvas);
     _drawAmericaContinent(canvas);
     _drawAsiaContinent(canvas);
+    _drawMediterraneanSea(canvas);
   }
 
   void _drawBackgroundColor(Canvas canvas, Size size) {
@@ -64,6 +70,29 @@ class WorldMapPainter extends CustomPainter {
     canvas.drawPath(path, painter);
   }
 
+  void _drawMediterraneanSea(Canvas canvas) {
+    Path path = Path();
+
+    path.moveTo(208, 101);
+
+    Paint paint = Paint()
+      ..color = Color(0xff68B0E0)
+      ..strokeWidth = 3.0
+      ..strokeJoin = StrokeJoin.round
+      ..strokeCap = StrokeCap.round
+      ..isAntiAlias = true
+      ..style = PaintingStyle.fill;
+
+    // canvas.drawCircle(Offset(208, 101), 2, paint);
+    cubicTo(canvas, path, 215, 103, 240, 97, 210, 94, drawCircles: false);
+    cubicTo(canvas, path, 200, 96, 198, 83, 185, 93, drawCircles: false);
+    cubicTo(canvas, path, 170, 106, 196, 90, 198, 102, drawCircles: false);
+    cubicTo(canvas, path, 200, 105, 204, 104, 208, 101, drawCircles: false);
+    path.close();
+
+    canvas.drawPath(path, paint);
+  }
+
   void _drawAsiaContinent(Canvas canvas) {
     Path path = Path();
 
@@ -98,6 +127,9 @@ class WorldMapPainter extends CustomPainter {
     cubicTo(canvas, path, 247, 119, 227, 118, 239, 123, drawCircles: false);
     cubicTo(canvas, path, 249, 131, 224, 138, 230, 152, drawCircles: false);
     cubicTo(canvas, path, 218, 160, 228, 178, 210, 185, drawCircles: false);
+    path.close();
+
+    var shiftedPath = path.shift(Offset(translationX, 0));
 
     Paint paint = Paint()
       ..color = Color(0xffF9AF66)
@@ -107,7 +139,7 @@ class WorldMapPainter extends CustomPainter {
       ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
-    canvas.drawPath(path, paint);
+    canvas.drawPath(shiftedPath, paint);
   }
 
   void _drawAmericaContinent(Canvas canvas) {
@@ -141,6 +173,8 @@ class WorldMapPainter extends CustomPainter {
     cubicTo(canvas, path, 100, 45, 100, 70, 60, 60, drawCircles: false);
     path.close();
 
+    var shiftedPath = path.shift(Offset(translationX, 0));
+
     Paint paint = Paint()
       // ..color = Colors.green
       ..color = Color(0xffF9AF66)
@@ -151,7 +185,7 @@ class WorldMapPainter extends CustomPainter {
       ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
-    canvas.drawPath(path, paint);
+    canvas.drawPath(shiftedPath, paint);
   }
 
   void _drawAmericaContinentShadow(Canvas canvas) {
@@ -185,6 +219,8 @@ class WorldMapPainter extends CustomPainter {
     cubicTo(canvas, path, 100, 45, 100, 70, 60, 60, drawCircles: false);
     path.close();
 
+    var shiftedPath = path.shift(Offset(translationX, 0));
+
     Paint paint = Paint()
       ..color = Colors.black26
       ..imageFilter = ui.ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0)
@@ -192,7 +228,7 @@ class WorldMapPainter extends CustomPainter {
       ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
-    canvas.drawPath(path, paint);
+    canvas.drawPath(shiftedPath, paint);
   }
 
   void cubicTo(
