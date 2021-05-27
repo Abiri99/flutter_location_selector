@@ -8,15 +8,16 @@ class WorldMapPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.clipRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromCircle(
-          center: Offset(size.width / 2, size.height / 2),
-          radius: size.height / 2,
+    if (!developMode)
+      canvas.clipRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromCircle(
+            center: Offset(size.width / 2, size.height / 2),
+            radius: size.height / 2,
+          ),
+          Radius.circular(10000),
         ),
-        Radius.circular(10000),
-      ),
-    );
+      );
     if (!developMode) _drawBackgroundColor(canvas, size);
 
     // canvas.drawColor(Colors.blue, BlendMode.src);
@@ -76,7 +77,13 @@ class WorldMapPainter extends CustomPainter {
     cubicTo(canvas, path, 152, 130, 163, 115, 172, 105, drawCircles: false);
     cubicTo(canvas, path, 180, 100, 170, 90, 181, 87, drawCircles: false);
     cubicTo(canvas, path, 190, 80, 172, 81, 180, 74, drawCircles: false);
-    cubicTo(canvas, path, 182, 70, 200, 80, 203, 74, drawCircles: false);
+    cubicTo(canvas, path, 182, 70, 200, 79, 203, 73, drawCircles: false);
+    cubicTo(canvas, path, 209, 65, 195, 72, 194, 68, drawCircles: false);
+    cubicTo(canvas, path, 192, 65, 200, 55, 210, 58, drawCircles: false);
+    cubicTo(canvas, path, 230, 62, 240, 58, 250, 55, drawCircles: false);
+    cubicTo(canvas, path, 270, 40, 280, 60, 300, 53, drawCircles: false);
+    cubicTo(canvas, path, 310, 50, 322, 60, 330, 58, drawCircles: false);
+    cubicTo(canvas, path, 310, 50, 322, 60, 330, 58, drawCircles: false);
 
     Paint paint = Paint()
       ..color = Color(0xffF9AF66)
