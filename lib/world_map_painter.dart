@@ -32,6 +32,7 @@ class WorldMapPainter extends CustomPainter {
     _drawAmericaContinent(canvas);
     _drawAsiaContinent(canvas);
     _drawMediterraneanSea(canvas);
+    _drawRedSea(canvas);
   }
 
   void _drawBackgroundColor(Canvas canvas, Size size) {
@@ -68,6 +69,25 @@ class WorldMapPainter extends CustomPainter {
     // ..blendMode = BlendMode.multiply;
 
     canvas.drawPath(path, painter);
+  }
+
+  void _drawRedSea(Canvas canvas) {
+    Path path = Path();
+
+    path.moveTo(218, 106);
+
+    Paint paint = Paint()
+      ..color = Color(0xff68B0E0)
+      ..strokeWidth = 3.0
+      ..strokeJoin = StrokeJoin.round
+      ..strokeCap = StrokeCap.round
+      ..isAntiAlias = true
+      ..style = PaintingStyle.fill;
+
+    canvas.drawCircle(Offset(218, 106), 2, paint);
+    path.close();
+
+    canvas.drawPath(path, paint);
   }
 
   void _drawMediterraneanSea(Canvas canvas) {
@@ -137,7 +157,7 @@ class WorldMapPainter extends CustomPainter {
       ..strokeJoin = StrokeJoin.round
       ..strokeCap = StrokeCap.round
       ..isAntiAlias = true
-      ..style = PaintingStyle.fill;
+      ..style = PaintingStyle.stroke;
 
     canvas.drawPath(shiftedPath, paint);
   }

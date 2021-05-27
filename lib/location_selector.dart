@@ -39,15 +39,15 @@ class _LocationSelectorState extends State<LocationSelector>
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Center(
-          //   child: AspectRatio(
-          //     aspectRatio: 800 / 520,
-          //     child: Image.asset(
-          //       'asset/world-map-simple.jpg', // image size: 800x520
-          //       fit: BoxFit.fill,
-          //     ),
-          //   ),
-          // ),
+          Center(
+            child: AspectRatio(
+              aspectRatio: 800 / 520,
+              child: Image.asset(
+                'asset/world-map-simple.jpg', // image size: 800x520
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
           Center(
             child: AspectRatio(
               aspectRatio: 800 / 520,
@@ -57,7 +57,7 @@ class _LocationSelectorState extends State<LocationSelector>
                   animation: _animationController,
                   builder: (context, _) => CustomPaint(
                     painter: WorldMapPainter(
-                      developMode: false,
+                      developMode: true,
                       translationX: _translationAnimation.value,
                     ),
                   ),
