@@ -25,7 +25,9 @@ class LocationSelector extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(1000)),
                 child: CustomPaint(
-                  painter: WorldMapPainter(),
+                  painter: WorldMapPainter(
+                    developMode: true,
+                  ),
                 ),
               ),
             ),

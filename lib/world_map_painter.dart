@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 class WorldMapPainter extends CustomPainter {
+  final bool developMode;
+
+  WorldMapPainter({this.developMode = false});
+
   @override
   void paint(Canvas canvas, Size size) {
     canvas.clipRRect(
@@ -13,12 +17,12 @@ class WorldMapPainter extends CustomPainter {
         Radius.circular(10000),
       ),
     );
-    _drawBackgroundColor(canvas, size);
+    if (!developMode) _drawBackgroundColor(canvas, size);
 
     // canvas.drawColor(Colors.blue, BlendMode.src);
     canvas.translate(0, 0);
 
-    _drawAmericaContinentShadow(canvas);
+    if (!developMode) _drawAmericaContinentShadow(canvas);
     _drawAmericaContinent(canvas);
     _drawAsiaContinent(canvas);
   }
@@ -64,15 +68,23 @@ class WorldMapPainter extends CustomPainter {
 
     // cubicTo(canvas, path, x1, y1, x2, y2, x3, y3)
 
+    // canvas.drawCircle(Offset(210, 185), 2, paint);
+    path.moveTo(210, 185);
+    cubicTo(canvas, path, 200, 187, 210, 175, 202, 170, drawCircles: false);
+    cubicTo(canvas, path, 195, 165, 205, 160, 198, 152, drawCircles: false);
+    cubicTo(canvas, path, 190, 148, 208, 125, 175, 135, drawCircles: false);
+    cubicTo(canvas, path, 152, 130, 163, 115, 172, 105, drawCircles: false);
+    cubicTo(canvas, path, 180, 100, 170, 90, 181, 87, drawCircles: false);
+    cubicTo(canvas, path, 190, 80, 172, 81, 180, 74, drawCircles: false);
+    cubicTo(canvas, path, 182, 70, 200, 80, 203, 74, drawCircles: false);
+
     Paint paint = Paint()
-      ..color = Colors.blue
+      ..color = Color(0xffF9AF66)
       ..strokeWidth = 3.0
       ..strokeJoin = StrokeJoin.round
       ..strokeCap = StrokeCap.round
       ..isAntiAlias = true
-      ..style = PaintingStyle.fill;
-
-    canvas.drawCircle(Offset(205, 180), 2, paint);
+      ..style = PaintingStyle.stroke;
 
     canvas.drawPath(path, paint);
   }
@@ -154,7 +166,7 @@ class WorldMapPainter extends CustomPainter {
     Paint paint = Paint()
       ..color = Colors.black26
       ..imageFilter = ui.ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0)
-    // ..color = Colors.brown
+      // ..color = Colors.brown
       ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
