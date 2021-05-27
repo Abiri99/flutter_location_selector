@@ -91,6 +91,13 @@ class WorldMapPainter extends CustomPainter {
     cubicTo(canvas, path, 300, 128, 301, 135, 305, 140, drawCircles: false);
     cubicTo(canvas, path, 306, 143, 313, 145, 315, 150, drawCircles: false);
     cubicTo(canvas, path, 305, 152, 300, 145, 295, 141, drawCircles: false);
+    cubicTo(canvas, path, 288, 135, 293, 130, 288, 120, drawCircles: false);
+    cubicTo(canvas, path, 285, 115, 278, 108, 272, 120, drawCircles: false);
+    cubicTo(canvas, path, 270, 135, 260, 135, 260, 115, drawCircles: false);
+    cubicTo(canvas, path, 258, 105, 250, 105, 245, 107, drawCircles: false);
+    cubicTo(canvas, path, 247, 119, 227, 118, 239, 123, drawCircles: false);
+    cubicTo(canvas, path, 249, 131, 224, 138, 230, 152, drawCircles: false);
+    cubicTo(canvas, path, 218, 160, 228, 178, 210, 185, drawCircles: false);
 
     Paint paint = Paint()
       ..color = Color(0xffF9AF66)
@@ -98,7 +105,7 @@ class WorldMapPainter extends CustomPainter {
       ..strokeJoin = StrokeJoin.round
       ..strokeCap = StrokeCap.round
       ..isAntiAlias = true
-      ..style = PaintingStyle.stroke;
+      ..style = PaintingStyle.fill;
 
     canvas.drawPath(path, paint);
   }
@@ -135,6 +142,7 @@ class WorldMapPainter extends CustomPainter {
     path.close();
 
     Paint paint = Paint()
+      // ..color = Colors.green
       ..color = Color(0xffF9AF66)
       // ..color = Colors.brown
       ..strokeWidth = 3.0

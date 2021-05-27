@@ -10,15 +10,15 @@ class LocationSelector extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Center(
-            child: AspectRatio(
-              aspectRatio: 800 / 520,
-              child: Image.asset(
-                'asset/world-map-simple.jpg', // image size: 800x520
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
+          // Center(
+          //   child: AspectRatio(
+          //     aspectRatio: 800 / 520,
+          //     child: Image.asset(
+          //       'asset/world-map-simple.jpg', // image size: 800x520
+          //       fit: BoxFit.fill,
+          //     ),
+          //   ),
+          // ),
           Center(
             child: AspectRatio(
               aspectRatio: 800 / 520,
@@ -26,7 +26,7 @@ class LocationSelector extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(1000)),
                 child: CustomPaint(
                   painter: WorldMapPainter(
-                    developMode: true,
+                    developMode: false,
                   ),
                 ),
               ),
