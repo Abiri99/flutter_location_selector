@@ -83,7 +83,14 @@ class WorldMapPainter extends CustomPainter {
     cubicTo(canvas, path, 230, 62, 240, 58, 250, 55, drawCircles: false);
     cubicTo(canvas, path, 270, 40, 280, 60, 300, 53, drawCircles: false);
     cubicTo(canvas, path, 310, 50, 322, 60, 330, 58, drawCircles: false);
-    cubicTo(canvas, path, 310, 50, 322, 60, 330, 58, drawCircles: false);
+    cubicTo(canvas, path, 335, 58, 345, 59, 349, 67, drawCircles: false);
+    cubicTo(canvas, path, 345, 73, 335, 65, 325, 67, drawCircles: false);
+    cubicTo(canvas, path, 308, 70, 330, 75, 320, 82, drawCircles: false);
+    cubicTo(canvas, path, 311, 89, 348, 100, 310, 110, drawCircles: false);
+    cubicTo(canvas, path, 293, 115, 312, 120, 305, 125, drawCircles: false);
+    cubicTo(canvas, path, 300, 128, 301, 135, 305, 140, drawCircles: false);
+    cubicTo(canvas, path, 306, 143, 313, 145, 315, 150, drawCircles: false);
+    cubicTo(canvas, path, 305, 152, 300, 145, 295, 141, drawCircles: false);
 
     Paint paint = Paint()
       ..color = Color(0xffF9AF66)
