@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_country_selector/location_pin_painter.dart';
 import 'package:flutter_country_selector/world_map_painter.dart';
 
 class LocationSelector extends StatefulWidget {
@@ -38,7 +39,7 @@ class _LocationSelectorState extends State<LocationSelector>
     print('width: ${MediaQuery.of(context).size.width}');
     print('height; ${MediaQuery.of(context).size.width * (520 / 800)}');
     return Container(
-      color: Colors.grey,
+      // color: Colors.grey,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -71,6 +72,7 @@ class _LocationSelectorState extends State<LocationSelector>
                             translationX: 0
                             // translationX: _translationAnimation.value,
                           ),
+                          foregroundPainter: LocationPinPainter(),
                         ),
                       ),
                       Container(
