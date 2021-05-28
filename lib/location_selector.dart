@@ -35,30 +35,38 @@ class _LocationSelectorState extends State<LocationSelector>
 
   @override
   Widget build(BuildContext context) {
+    print('width: ${MediaQuery.of(context).size.width}');
+    print('height; ${MediaQuery.of(context).size.width * (520 / 800)}');
     return Container(
-      child: Stack(
-        alignment: Alignment.center,
+      color: Colors.blue,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
+          // Center(
+          //   child: AspectRatio(
+          //     aspectRatio: 800 / 520,
+          //     child: Image.asset(
+          //       'asset/world-map-simple.jpg', // image size: 800x520
+          //       fit: BoxFit.fill,
+          //     ),
+          //   ),
+          // ),
+          Text('list'),
+          SizedBox(width: 80,),
+          Expanded(
             child: AspectRatio(
               aspectRatio: 800 / 520,
-              child: Image.asset(
-                'asset/world-map-simple.jpg', // image size: 800x520
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
-          Center(
-            child: AspectRatio(
-              aspectRatio: 800 / 520,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(1000)),
-                child: AnimatedBuilder(
-                  animation: _animationController,
-                  builder: (context, _) => CustomPaint(
-                    painter: WorldMapPainter(
-                      developMode: true,
-                      translationX: _translationAnimation.value,
+              child: AnimatedBuilder(
+                animation: _animationController,
+                builder: (context, _) => LayoutBuilder(
+                  builder: (context, constraints) => Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight,
+                    child: CustomPaint(
+                      painter: WorldMapPainter(
+                        developMode: false,
+                        translationX: _translationAnimation.value,
+                      ),
                     ),
                   ),
                 ),
