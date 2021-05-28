@@ -20,11 +20,11 @@ class _LocationSelectorState extends State<LocationSelector>
       duration: Duration(seconds: 2),
       reverseDuration: Duration(seconds: 2),
     );
-    _translationAnimation = Tween(begin: 0.0, end: 50.0).animate(
+    _translationAnimation = Tween(begin: 0.0, end: -100.0).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Curves.easeInOut,
-        reverseCurve: Curves.easeInOut,
+        curve: Curves.easeOut,
+        reverseCurve: Curves.easeOut,
       ),
     );
     // Future.delayed(Duration(seconds: 1), () {
@@ -38,7 +38,7 @@ class _LocationSelectorState extends State<LocationSelector>
     print('width: ${MediaQuery.of(context).size.width}');
     print('height; ${MediaQuery.of(context).size.width * (520 / 800)}');
     return Container(
-      color: Colors.blue,
+      color: Colors.grey,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -52,22 +52,39 @@ class _LocationSelectorState extends State<LocationSelector>
           //   ),
           // ),
           Text('list'),
-          SizedBox(width: 80,),
+          // SizedBox(width: 80,),
           Expanded(
             child: AspectRatio(
               aspectRatio: 800 / 520,
               child: AnimatedBuilder(
                 animation: _animationController,
                 builder: (context, _) => LayoutBuilder(
-                  builder: (context, constraints) => Container(
-                    width: constraints.maxWidth,
-                    height: constraints.maxHeight,
-                    child: CustomPaint(
-                      painter: WorldMapPainter(
-                        developMode: false,
-                        translationX: _translationAnimation.value,
+                  builder: (context, constraints) => Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: constraints.maxWidth - 16,
+                        height: constraints.maxHeight - 16,
+                        child: CustomPaint(
+                          painter: WorldMapPainter(
+                            developMode: false,
+                            translationX: 0
+                            // translationX: _translationAnimation.value,
+                          ),
+                        ),
                       ),
-                    ),
+                      Container(
+                        width: constraints.maxHeight,
+                        height: constraints.maxHeight,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(1000)),
+                          border: Border.all(
+                            width: 2.0,
+                            color: Color(0xff582D81),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

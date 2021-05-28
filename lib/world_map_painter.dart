@@ -43,7 +43,14 @@ class WorldMapPainter extends CustomPainter {
   }
 
   double _ccx(double x) {
-    return x * (size.width / 392.72727272727275);
+    var result = x * (size.width / 392.72727272727275);
+    // if (result + translationX > size.width) {
+    //   var response = size.width - (result + translationX);
+    //   print('response: $response');
+    //   return response;
+    // }
+    // if ()
+    return result;
   }
 
   double _ccy(double y) {
@@ -87,7 +94,7 @@ class WorldMapPainter extends CustomPainter {
 
     var shiftedPath = path.shift(Offset(translationX, 0));
 
-    canvas.drawPath(shiftedPath, painter);
+    canvas.drawPath(path, painter);
   }
 
   void _drawRedSea(Canvas canvas) {
