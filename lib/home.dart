@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 300,
+              height: 200,
               // color: Colors.brown,
               child: LocationSelector(),
             ),

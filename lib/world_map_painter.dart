@@ -23,7 +23,7 @@ class WorldMapPainter extends CustomPainter {
       canvas.clipRRect(
         RRect.fromRectAndRadius(
           Rect.fromCircle(
-            center: Offset(size.width / 2, size.height / 2),
+            center: Offset(size.width - (size.height / 2), size.height / 2),
             radius: size.height / 2,
           ),
           Radius.circular(10000),
